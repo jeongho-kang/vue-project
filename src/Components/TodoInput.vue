@@ -1,5 +1,6 @@
 <template>
     <div class="inputBox shadow">
+      <!--input이니까 v-model을 사용한다.-->
       <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
       <!-- <button v-on:click="addTodo">add</button> -->
       <span class="addContainer" v-on:click="addTodo">
@@ -25,13 +26,13 @@
     },
     methods: {
       addTodo: function(){
-        if (this.newTodoItem !== ''){
+        if (this.newTodoItem !== ''){ // input박스의 입력값이 있을때만 저장한다.
             this.$emit('addTodoItem', this.newTodoItem);
-        this.clearInput();
+        this.clearInput(); // input박스의 입력값을 초기화
         }
       },
       clearInput: function(){
-        this.newTodoItem = '';
+        this.newTodoItem = ''; // newTodoItem 초기화
       }
     }
   }

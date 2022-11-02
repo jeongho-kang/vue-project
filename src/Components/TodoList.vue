@@ -1,6 +1,7 @@
 <template>
     <div>
       <transition-group name="list" tag="ui">
+        <!--뷰 데이터의 개수만큼 화면에 표시한다.-->
         <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item" class="shadow">
           <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}" 
           v-on:click="toggleComplete(todoItem, index)"></i>
@@ -14,7 +15,7 @@
   </template>
   
   <script>
-  
+  // TodoList에 컴포넌트 props 속성 추가
   export default {
     props:['propsdata'],
     data: function(){
@@ -31,6 +32,7 @@
       }
     },
     created: function(){
+      // 뷰 인스턴스가 생성되자마자 실행되는 lifecyle 훅
       if (localStorage.length > 0) {
         for(var i = 0; i< localStorage.length; i++){
           if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
