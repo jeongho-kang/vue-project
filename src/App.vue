@@ -8,6 +8,7 @@
 </template>
 
 <script>
+// 다른 위치에 있는 컴포넌트들을 import한다.
 import TodoHeader from './components/TodoHeader.vue';
 import TodoList from './components/TodoList.vue';
 import TodoInput from './components/TodoInput.vue';
@@ -16,9 +17,9 @@ import TodoFooter from './components/TodoFooter.vue';
 export default {
   data : function(){
     return{
-      todoItems: [],
+      todoItems: [], // props와 이벤트 전달을 이용해 할 일 입력 기능을 개선하기 위해 만든다.
     }
-  },
+  }, 
   methods:{
     addOneItem: function(todoItem){
       //input 컴포넌트에서 이벤트릴 발생시키면 addTodoItem 과 함께 todoItem 도 딸려서 올라온다.
@@ -34,6 +35,7 @@ export default {
    },
    toggleComplete: function(todoItem){
         todoItem.completed = !todoItem.completed;
+        // 로컬 스토리지 데이터를 갱신한다.
         localStorage.removeItem(todoItem.item);
         localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       },
@@ -56,6 +58,7 @@ export default {
         }
     }
   },
+  // 지역 컴포넌트를 선언해준다.
   components:{
     'TodoHeader' : TodoHeader,
     'TodoInput' : TodoInput,
@@ -65,7 +68,7 @@ export default {
   
 }
 </script>
-
+ 
 <style>
   body {
     text-align: center;
